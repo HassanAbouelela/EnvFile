@@ -4,11 +4,11 @@ plugins {
 }
 
 intellij {
-    version jetbrains.version
-    plugins jetbrains.pycharm
+    version.set(jetbrains.version)
+    plugins.set([jetbrains.pycharm])
 }
 
 dependencies {
-    compile project(":envfile-platform")
-    compile "org.jetbrains:annotations:16.0.3"
+    implementation project(":envfile-platform")
+    implementation "org.jetbrains:annotations:23.0.0"
 }

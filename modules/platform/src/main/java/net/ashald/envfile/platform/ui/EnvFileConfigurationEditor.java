@@ -68,7 +68,7 @@ public class EnvFileConfigurationEditor<T extends RunConfigurationBase> extends 
         return editor;
     }
 
-    public static void readExternal(@NotNull RunConfigurationBase configuration, @NotNull Element element) {
+    public static void readExternal(@NotNull RunConfigurationBase<?> configuration, @NotNull Element element) {
         String isEnabledStr = JDOMExternalizerUtil.readField(element, FIELD_IS_ENABLED);
         boolean isEnabled = Boolean.parseBoolean(isEnabledStr);
 
@@ -118,7 +118,7 @@ public class EnvFileConfigurationEditor<T extends RunConfigurationBase> extends 
         configuration.putCopyableUserData(USER_DATA_KEY, state);
     }
 
-    public static void writeExternal(@NotNull RunConfigurationBase configuration, @NotNull Element element) {
+    public static void writeExternal(@NotNull RunConfigurationBase<?> configuration, @NotNull Element element) {
         EnvFileSettings state = configuration.getCopyableUserData(USER_DATA_KEY);
         if (state != null) {
             JDOMExternalizerUtil.writeField(element, FIELD_IS_ENABLED, Boolean.toString(state.isEnabled()));
@@ -142,7 +142,7 @@ public class EnvFileConfigurationEditor<T extends RunConfigurationBase> extends 
         }
     }
 
-    public static Map<String, String> collectEnv(@NotNull RunConfigurationBase runConfigurationBase, Map<String, String> runConfigEnv) throws ExecutionException {
+    public static Map<String, String> collectEnv(@NotNull RunConfigurationBase<?> runConfigurationBase, Map<String, String> runConfigEnv) throws ExecutionException {
         EnvFileSettings state = runConfigurationBase.getCopyableUserData(USER_DATA_KEY);
         if (state != null && state.isEnabled()) {
             Map<String, String> result = new HashMap<>();
@@ -164,7 +164,7 @@ public class EnvFileConfigurationEditor<T extends RunConfigurationBase> extends 
         }
     }
 
-    public static void validateConfiguration(@NotNull RunConfigurationBase configuration, boolean isExecution) throws ExecutionException {
+    public static void validateConfiguration(@NotNull RunConfigurationBase<?> configuration, boolean isExecution) throws ExecutionException {
         EnvFileSettings state = configuration.getCopyableUserData(USER_DATA_KEY);
         if (state != null && state.isEnabled()) {
             for (EnvFileEntry entry : state.getEntries()) {
@@ -181,7 +181,7 @@ public class EnvFileConfigurationEditor<T extends RunConfigurationBase> extends 
         }
     }
 
-    public static boolean isEnableExperimentalIntegrations(@NotNull RunConfigurationBase configuration) {
+    public static boolean isEnableExperimentalIntegrations(@NotNull RunConfigurationBase<?> configuration) {
         EnvFileSettings state = configuration.getCopyableUserData(USER_DATA_KEY);
         return state != null && state.isEnableExperimentalIntegrations();
     }

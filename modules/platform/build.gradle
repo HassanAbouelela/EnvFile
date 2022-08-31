@@ -4,10 +4,10 @@ plugins {
 }
 
 intellij {
-    version jetbrains.version
+    version.set(jetbrains.version)
 }
 
 dependencies {
-    compile project(":envfile-core")
-    compile "org.jetbrains:annotations:16.0.3"
+    implementation project(":envfile-core")
+    implementation "org.jetbrains:annotations:23.0.0"
 }

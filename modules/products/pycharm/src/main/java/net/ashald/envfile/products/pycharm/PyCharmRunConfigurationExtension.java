@@ -13,9 +13,6 @@ import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class PyCharmRunConfigurationExtension extends PythonRunConfigurationExtension {
 
     @Nullable
@@ -53,21 +50,22 @@ public class PyCharmRunConfigurationExtension extends PythonRunConfigurationExte
 
     @Override
     protected void patchCommandLine(@NotNull AbstractPythonRunConfiguration configuration, @Nullable RunnerSettings runnerSettings, @NotNull GeneralCommandLine cmdLine, @NotNull String runnerId) throws ExecutionException {
-        Map<String, String> currentEnv = cmdLine.getEnvironment();
-        Map<String, String> newEnv = EnvFileConfigurationEditor.collectEnv(configuration, new HashMap<>(currentEnv));
-        currentEnv.clear();
-        currentEnv.putAll(newEnv);
+        // FIXME: This method does not appear to be called anymore in versions 222+
+//        Map<String, String> currentEnv = cmdLine.getEnvironment();
+//        Map<String, String> newEnv = EnvFileConfigurationEditor.collectEnv(configuration, new HashMap<>(currentEnv));
+//        currentEnv.clear();
+//        currentEnv.putAll(newEnv);
     }
 
     //
 
     @Override
-    public boolean isApplicableFor(@NotNull AbstractPythonRunConfiguration configuration) {
+    public boolean isApplicableFor(@NotNull AbstractPythonRunConfiguration<?> configuration) {
         return true;
     }
 
     @Override
-    public boolean isEnabledFor(@NotNull AbstractPythonRunConfiguration applicableConfiguration, @Nullable RunnerSettings runnerSettings) {
+    public boolean isEnabledFor(@NotNull AbstractPythonRunConfiguration<?> applicableConfiguration, @Nullable RunnerSettings runnerSettings) {
         return true;
     }
 }

@@ -1,10 +1,15 @@
 <idea-plugin>
   <id>net.ashald.envfile</id>
   <name>EnvFile</name>
-  <version>3.2.2</version>
+  <version>3.2.3</version>
   <vendor email="envfile@ashald.net">Borys Pierov</vendor>
 
   <description><![CDATA[
+      <h1>Improtant!</h1>
+      This is an unofficial fork of the plugin, which fixes the plugin for IDE versions 2022.2+.
+      Please refer to <a href="https://github.com/HassanAbouelela/EnvFile">https://github.com/HassanAbouelela/EnvFile</a>
+      <hr class="solid"></hr>
+
       <h1>EnvFile</h1>
       <b>Compiled with Java 1.8</b>
       <h2>
@@ -52,14 +57,13 @@
     ]]>
   </change-notes>
 
-  <idea-version since-build="183"/>
+  <idea-version since-build="222"/>
 
   <depends>com.intellij.modules.lang</depends>
   <!-- https://youtrack.jetbrains.com/issue/IDEA-270963 -->
-  <depends optional="true">com.intellij.modules.java</depends>
 
   <extensionPoints>
-    <extensionPoint name="envVarsProvider" beanClass="net.ashald.envfile.platform.EnvVarsProviderExtension">
+    <extensionPoint name="envVarsProvider" beanClass="net.ashald.envfile.platform.EnvVarsProviderExtension" dynamic="true">
       <with attribute="factory" implements="net.ashald.envfile.EnvVarsProviderFactory"/>
     </extensionPoint>
   </extensionPoints>
@@ -72,7 +76,7 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="net.ashald.envfile.platform.EnvFileTypeFactory"/>
-    <applicationService serviceImplementation="net.ashald.envfile.products.idea.scala.SbtRunConfigurationExtensionManager"/>
+<!--    <applicationService serviceImplementation="net.ashald.envfile.products.idea.scala.SbtRunConfigurationExtensionManager"/>-->
   </extensions>
 
   <depends optional="true" config-file="envfile-idea.xml">com.intellij.modules.lang</depends>

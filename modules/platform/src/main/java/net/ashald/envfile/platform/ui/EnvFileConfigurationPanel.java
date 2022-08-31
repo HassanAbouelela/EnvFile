@@ -10,7 +10,6 @@ import com.intellij.openapi.fileChooser.FileChooser;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.ui.popup.ListPopup;
 import com.intellij.openapi.util.Conditions;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -21,20 +20,20 @@ import com.intellij.util.ui.ColumnInfo;
 import com.intellij.util.ui.JBUI;
 import com.intellij.util.ui.ListTableModel;
 import net.ashald.envfile.platform.EnvFileEntry;
-import net.ashald.envfile.platform.EnvVarsProviderExtension;
 import net.ashald.envfile.platform.EnvFileSettings;
+import net.ashald.envfile.platform.EnvVarsProviderExtension;
 import net.ashald.envfile.platform.ui.table.EnvFileIsActiveColumnInfo;
 import net.ashald.envfile.platform.ui.table.EnvFilePathColumnInfo;
 import net.ashald.envfile.platform.ui.table.EnvFileTypeColumnInfo;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 class EnvFileConfigurationPanel<T extends RunConfigurationBase> extends JPanel {
@@ -170,7 +169,7 @@ class EnvFileConfigurationPanel<T extends RunConfigurationBase> extends JPanel {
     }
 
     private void doAddAction(AnActionButton button, final TableView<EnvFileEntry> table, final ListTableModel<EnvFileEntry> model) {
-        DefaultActionGroup actionGroup = new DefaultActionGroup(null, false);
+        DefaultActionGroup actionGroup = new DefaultActionGroup();
 
         for (final EnvVarsProviderExtension extension : EnvVarsProviderExtension.getParserExtensions()) {
             if (!extension.getFactory().createProvider(substituteEnvVarsCheckBox.isSelected()).isEditable()) {
