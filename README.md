@@ -1,3 +1,6 @@
+# WARNING!
+The changes made in this fork have now been ported upstream, please use the main plugin, available on the plugin marketplace.
+
 # EnvFile
 
 ## Description
