@@ -6,8 +6,8 @@
 
   <description><![CDATA[
       <h1>Improtant!</h1>
-      This is an unofficial fork of the plugin, which fixes the plugin for IDE versions 2022.2+.
-      Please refer to <a href="https://github.com/HassanAbouelela/EnvFile">https://github.com/HassanAbouelela/EnvFile</a>
+      The fix introduced by this fork has now been merged upstream, please use the plugin from the plugin marketplace.
+      Track <a href="https://github.com/ashald/EnvFile/issues/185">this issue</a> for more information and changes.
       <hr class="solid"></hr>
 
       <h1>EnvFile</h1>
